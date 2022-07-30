@@ -1,0 +1,88 @@
+[alias]
+    # Run interactive rebase with no editor. Just accept the updated script
+    autosquash=" -c sequence.editor=: rebase --interactive --autosquash"
+
+    bclean = "!f() { git branch --merged ${1-main} | grep -v " ${1-main}$" | xargs -r git branch -d; }; f"
+
+    # diff HEAD against where we push to
+    diffp = "diff @ @{push}"
+
+    g = "log --oneline --graph"
+
+    newbranch = "switch --no-track --create"
+    pf = "push origin @{push} --force-with-lease"
+    save = !git add -A && git commit -m "SAVEPOINT"
+    st = status --short --no-branch
+    undo = reset HEAD~1 --mixed
+    up = "!f() { branch="${2}"; if [ -z "$branch" ] ; then branch=$(git branch --show-current); fi; git fetch --prune ${1-upstream}; git merge --ff-only ${1-upstream}/$branch; }; f"
+    wip = !git add -u && git commit -m "WIP" 
+
+{{ if hasSuffix "amidu" .chezmoi.username -}}
+    # Work-specific aliases for working with topic branches
+
+    # Commit, including issue key
+    cj = "!f() { message=$1; shift; git commit -m \"$(git jiran) $message\" \"$@\"; }; f"
+
+    # Open Browser on Jira ticket
+    j = "!explorer http://jiraprod.agfahealthcare.com/browse/$(git jiran)"
+
+    # Get the JIRA issue key (number) for the current branch
+    jiran = "!f() { git rev-parse --abbrev-ref HEAD | grep -o -E "[A-Z]+-[0-9]+"; }; f"
+
+    # log back to the ancestor of this topic branch
+    lb = "!f() { b=$(git branch --show-current); b=${b%/*}; b=${b/topic/team}; git log --oneline HEAD ^origin/$b^1 ^origin/$b^2 $*; }; f"
+{{- end }}
+
+[core]
+    autocrlf=input
+
+[diff]
+{{- if hasSuffix "amidu" .chezmoi.username }}
+    tool = araxis
+{{- else }}
+    tool = vscode
+{{- end }}
+
+[difftool]
+    prompt = false
+
+[difftool "araxis"]
+    cmd = difftool.sh \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+
+[difftool "vscode"]
+    cmd = code --wait --diff \"$LOCAL\" \"$REMOTE\"
+
+[fetch]
+    prune = true
+
+[help]
+    autocorrect = 1
+
+[log]
+    mailmap = true
+
+[merge]
+    conflictstyle = zdiff3
+    ff = false
+    tool = vscode
+
+[mergetool "vscode"]
+    cmd = code --wait \"$MERGED\"
+
+[pull]
+    ff = only
+
+[push]
+    default = simple
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+
+[user]
+{{- if hasSuffix "amidu" .chezmoi.username }}
+    useConfigOnly = true
+{{- else }}
+   email = {{ .email }}
+   name = {{ .name }}
+{{- end }}
