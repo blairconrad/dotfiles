@@ -67,6 +67,11 @@
 [log]
     mailmap = true
 
+{{- if hasSuffix "amidu" .chezmoi.username }}
+[maintenance]
+   repo = E:/Dev/ei
+{{- end }}
+
 [merge]
     conflictstyle = zdiff3
     ff = false
