@@ -1,7 +1,6 @@
 $env:DEFAULT_EDITOR = "code"
 $env:PYTHONSTARTUP = Join-Path $env:XDG_CONFIG_HOME pythonrc.py
 
-Import-Module oh-my-posh
 Import-Module posh-git
 Import-Module PSReadLine
 
@@ -35,5 +34,4 @@ Set-PSReadlineKeyHandler -Key "Ctrl+RightArrow" -Function ForwardWord
 Set-PSReadlineKeyHandler -Key "Tab" -Function Complete
 
 # oh-my-posh settings
-Set-Theme Paradox
-$DefaultUser = $env:USERNAME
+oh-my-posh --init --shell pwsh --config ${env:XDG_CONFIG_HOME}/oh-my-posh/themes/blair-velvet.omp.json | Invoke-Expression
