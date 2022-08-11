@@ -1,6 +1,10 @@
 $env:DEFAULT_EDITOR = "code"
 $env:PYTHONSTARTUP = Join-Path $env:XDG_CONFIG_HOME pythonrc.py
 
+# Let oh-my-posh decide whether the virtual environemnt is in the prompt
+$env:VIRTUAL_ENV_DISABLE_PROMPT = "true"
+
+
 Import-Module posh-git
 Import-Module PSReadLine
 
