@@ -17,7 +17,7 @@
           "type": "python"
         },
         {
-          "background": "#4c1f5e",
+          "background": "#0E050F",
           "foreground": "#7FD5EA",
           "leading_diamond": " \ue0b6",
           "properties": {
@@ -29,7 +29,7 @@
           "type": "go"
         },
         {
-          "background": "#4c1f5e",
+          "background": "#0E050F",
           "foreground": "#42E66C",
           "leading_diamond": " \ue0b6",
           "properties": {
@@ -41,7 +41,7 @@
           "type": "node"
         },
         {
-          "background": "#4c1f5e",
+          "background": "#0E050F",
           "foreground": "#E64747",
           "leading_diamond": " \ue0b6",
           "properties": {
@@ -53,7 +53,7 @@
           "type": "ruby"
         },
         {
-          "background": "#4c1f5e",
+          "background": "#0E050F",
           "foreground": "#E64747",
           "leading_diamond": " \ue0b6",
           "properties": {
@@ -100,7 +100,7 @@
           "type": "git"
         },
         {
-          "background": "#4c1f5e",
+          "background": "#0E050F",
           "foreground": "#EFDCF9",
           "powerline_symbol": "\ue0b4",
           "properties": {
