@@ -111,7 +111,7 @@
           },
           "style": "diamond",
           "template": " \uf7d4{{ if gt .Code 0 }} {{.Code}}{{ end }} ",
-          "trailing_diamond": "\ue0b4",
+          "trailing_diamond": "\ue0c0",
           "type": "exit"
         }
       ],
