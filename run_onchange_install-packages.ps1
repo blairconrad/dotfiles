@@ -2,9 +2,16 @@
     "Git.Git",
     "Google.Chrome",
     "JanDeDobbeleer.OhMyPosh",
-    "Microfost.VisualStudioCode"
+    "Microsoft.VisualStudioCode"
 ) | Foreach-Object {
-    winget install --scope user --exact --accept-package-agreements --accept-source-agreements $_
+    winget list --id $_ > $null
+    if ($?) {
+        Write-Output "Package $_ is already installed. Not re-installing."
+    }
+    else {
+        Write-Output "Installing package $_."
+        winget install --scope user --exact --accept-package-agreements --accept-source-agreements $_
+    }
 }
 
 @(
