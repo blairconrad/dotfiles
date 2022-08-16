@@ -26,7 +26,6 @@ Function Activate-VirtualEnvironment {
     }
 
     $homeVenvDir = Join-Path $env:XDG_DATA_HOME venv (Get-Location | Split-Path -Leaf)
-    echo $homeVenvDir
     $homeVenv = Join-Path $homeVenvDir $activatePath
     if (Test-Path $homeVenv) {
         Write-Output "Activating ${homeVenv}"
