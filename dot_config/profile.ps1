@@ -1,3 +1,5 @@
+$env:XDG_DATA_HOME = Join-Path $env:HOME ".local/share"
+
 $env:DEFAULT_EDITOR = "code"
 $env:PYTHONSTARTUP = Join-Path $env:XDG_CONFIG_HOME pythonrc.py
 
@@ -15,17 +17,32 @@ Function Set-LocationToParent {
 Set-Alias .. Set-LocationToParent
 
 Function Activate-VirtualEnvironment {
-    $venvPath = ".venv/Scripts/Activate.ps1"
-    if (! (Test-Path $venvPath)) {
-        if ("y" -eq (Read-Host -Prompt "There's no $venvPath in this directory Create one?")) {
-            python -m venv .venv
-        }
-        else {
-            Write-Host "Okay. Nevermind."
-            return
-        }
+    $activatePath = "Scripts/Activate.ps1"
+    $localVenv = Join-Path (Get-Location) ".venv" $activatePath
+    if (Test-Path $localVenv) {
+        Write-Output "Activating ${localVenv}"
+        & $localVenv
+        return
     }
-    & $venvPath
+
+    $homeVenvDir = Join-Path $env:XDG_DATA_HOME venv (Get-Location | Split-Path -Leaf)
+    echo $homeVenvDir
+    $homeVenv = Join-Path $homeVenvDir $activatePath
+    if (Test-Path $homeVenv) {
+        Write-Output "Activating ${homeVenv}"
+        & $homeVenv
+        return
+    }
+
+    if ("y" -eq (Read-Host -Prompt "There's no virtual environment found for $(Get-Location). Create one?")) {
+        Write-Output "Creating virtual environment in ${homeVenvDir}"
+        python -m venv $homeVenvDir
+        Write-Output "Activating ${homeVenv}"
+        & $homeVenv
+        return
+    }
+
+    Write-Host "Okay. Nevermind."
 }
 
 Set-Alias venv Activate-VirtualEnvironment
