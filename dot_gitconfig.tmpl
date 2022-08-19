@@ -10,7 +10,7 @@
     g = "log --oneline --graph"
 
     newbranch = "switch --no-track --create"
-    pf = "push origin @{push} --force-with-lease"
+    pf = "push --force-with-lease"
     save = !git add -A && git commit -m "SAVEPOINT"
     st = status --short --no-branch
     undo = reset HEAD~1 --mixed
