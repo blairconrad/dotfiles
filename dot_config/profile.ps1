@@ -1,6 +1,6 @@
 $env:XDG_DATA_HOME = Join-Path $env:HOME ".local/share"
 
-$env:DEFAULT_EDITOR = "code"
+$env:EDITOR = "code --wait"
 $env:PYTHONSTARTUP = Join-Path $env:XDG_CONFIG_HOME pythonrc.py
 
 # Let oh-my-posh decide whether the virtual environemnt is in the prompt
