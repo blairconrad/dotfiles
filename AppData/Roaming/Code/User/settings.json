@@ -28,5 +28,8 @@
     },
     "search.exclude": {
         "**/target": true
-    }
+    },
+    "cSpell.userWords": [
+        "anonymization"
+    ]
 }
