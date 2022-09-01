@@ -16,6 +16,20 @@ Function Set-LocationToParent {
 
 Set-Alias .. Set-LocationToParent
 
+Function Set-LocationToRepositoryRoot {
+    $originalLocation = Get-Location
+    $currentLocation = $originalLocation
+    while ( $currentLocation -And ! (Test-Path (Join-Path $currentLocation .git)) ) {
+        $currentLocation = Split-Path -Parent $currentLocation
+    }
+    if ($currentLocation) {
+        Set-Location $currentLocation
+    }
+    else {
+        Write-Output "$originalLocation does not appear to be inside a git repository. Not changing directory."
+    }
+}
+
 Function Activate-VirtualEnvironment {
     $activatePath = "Scripts/Activate.ps1"
     $localVenv = Join-Path (Get-Location) ".venv" $activatePath
