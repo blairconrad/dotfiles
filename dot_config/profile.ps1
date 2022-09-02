@@ -30,6 +30,8 @@ Function Set-LocationToRepositoryRoot {
     }
 }
 
+Set-Alias rr Set-LocationToRepositoryRoot
+
 Function Activate-VirtualEnvironment {
     $activatePath = "Scripts/Activate.ps1"
     $localVenv = Join-Path (Get-Location) ".venv" $activatePath
