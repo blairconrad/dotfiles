@@ -15,6 +15,8 @@
 }
 
 @(
+    "bat",
+    "less",
     "pyenv"
 ) | Foreach-Object {
     scoop install $_
