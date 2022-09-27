@@ -15,6 +15,7 @@
 }
 
 @(
+    "autohotkey2",
     "bat",
     "less",
     "pyenv"
