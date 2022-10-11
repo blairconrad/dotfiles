@@ -72,7 +72,7 @@ Set-PSReadlineKeyHandler -Key "Tab" -Function Complete
 # oh-my-posh settings
 oh-my-posh --init --shell pwsh --config ${env:XDG_CONFIG_HOME}/oh-my-posh/themes/blair-velvet.omp.json | Invoke-Expression
 
-if (Get-Command autohotkey2) {
+if (Get-Command -ErrorAction SilentlyContinue autohotkey2) {
     if (! (Get-Process -Name *autohotkey2* | Where-Object { $_.CommandLine -like "*default.ahk*" })) {
         Start-Process -NoNewWindow autohotkey2 -ArgumentList (Join-Path $env:XDG_CONFIG_HOME autohotkey default.ahk)
     }
