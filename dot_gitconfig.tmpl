@@ -67,11 +67,6 @@
 [log]
     mailmap = true
 
-{{- if hasSuffix "amidu" .chezmoi.username }}
-[maintenance]
-   repo = E:/Dev/ei
-{{- end }}
-
 [merge]
     conflictstyle = zdiff3
     ff = false
@@ -90,6 +85,14 @@
 [rebase]
     autoSquash = true
     autoStash = true
+
+{{- if hasSuffix "amidu" .chezmoi.username }}
+
+[scalar]
+   repo = E:/Dev/ei
+   repo = E:/Dev/ei2
+   repo = E:/Dev/ei3
+{{- end }}
 
 [user]
 {{- if hasSuffix "amidu" .chezmoi.username }}
