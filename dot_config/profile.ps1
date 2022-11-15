@@ -33,6 +33,11 @@ Function Set-LocationToRepositoryRoot {
 Set-Alias rr Set-LocationToRepositoryRoot
 
 Function Activate-VirtualEnvironment {
+    Param(
+        [Parameter(Mandatory = $false)]
+        [string] $PythonVersion = "3"
+    )
+
     $activatePath = "Scripts/Activate.ps1"
     $localVenv = Join-Path (Get-Location) ".venv" $activatePath
     if (Test-Path $localVenv) {
@@ -51,7 +56,7 @@ Function Activate-VirtualEnvironment {
 
     if ("y" -eq (Read-Host -Prompt "There's no virtual environment found for $(Get-Location). Create one?")) {
         Write-Output "Creating virtual environment in ${homeVenvDir}"
-        python -m venv $homeVenvDir
+        py "-${PythonVersion}" -m venv $homeVenvDir
         Write-Output "Activating ${homeVenv}"
         & $homeVenv
         return
