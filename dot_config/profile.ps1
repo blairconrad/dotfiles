@@ -35,30 +35,49 @@ Set-Alias rr Set-LocationToRepositoryRoot
 Function Activate-VirtualEnvironment {
     Param(
         [Parameter(Mandatory = $false)]
+        [string] $VenvName = $null,
+        [Parameter(Mandatory = $false)]
         [string] $PythonVersion = "3"
     )
 
     $activatePath = "Scripts/Activate.ps1"
-    $localVenv = Join-Path (Get-Location) ".venv" $activatePath
-    if (Test-Path $localVenv) {
-        Write-Output "Activating ${localVenv}"
-        & $localVenv
-        return
+
+    if ($VenvName) {
+        $preferredLocations = [array](Join-Path (Resolve-Path .) .venv $VenvName)
+    }
+    else {
+        $baseName = Split-Path -Leaf (Get-Location)
+        $preferredLocations = @(
+            (Join-Path (Resolve-Path .) .venv $baseName),
+            (Join-Path (Resolve-Path .) .venv *),
+            # legacy
+            (Join-Path $env:XDG_DATA_HOME venv $baseName),
+            (Join-Path (Resolve-Path .) .venv)
+        )
     }
 
-    $homeVenvDir = Join-Path $env:XDG_DATA_HOME venv (Get-Location | Split-Path -Leaf)
-    $homeVenv = Join-Path $homeVenvDir $activatePath
-    if (Test-Path $homeVenv) {
-        Write-Output "Activating ${homeVenv}"
-        & $homeVenv
-        return
+    foreach ($location in $preferredLocations) {
+        $candidateVenv = Join-Path $location $activatePath
+        if (Test-Path $candidateVenv) {
+            if ( ([array](Get-Item $candidateVenv)).Length -eq 1) {
+                Write-Output "Activating ${candidateVenv}"
+                & $candidateVenv
+                return
+            }
+            else {
+                Write-Error "Too many virtual environments: $(Get-Item $candidateVenv | Resolve-Path -Relative)"
+                return
+            }
+        }
     }
 
     if ("y" -eq (Read-Host -Prompt "There's no virtual environment found for $(Get-Location). Create one?")) {
-        Write-Output "Creating virtual environment in ${homeVenvDir}"
-        py "-${PythonVersion}" -m venv $homeVenvDir
-        Write-Output "Activating ${homeVenv}"
-        & $homeVenv
+        $newVenvDir = $preferredLocations[0]
+        $newVenv = Join-Path $newVenvDir $activatePath
+        Write-Output "Creating virtual environment in ${newVenvDir}"
+        py "-${PythonVersion}" -m venv $newVenvDir
+        Write-Output "Activating ${newVenvDir}"
+        & $newVenv
         return
     }
 
