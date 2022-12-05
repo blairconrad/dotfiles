@@ -15,6 +15,7 @@
 }
 
 @(
+    "7zip",
     "autohotkey2",
     "bat",
     "less"
