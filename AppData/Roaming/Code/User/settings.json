@@ -30,6 +30,12 @@
         "**/target": true
     },
     "cSpell.userWords": [
-        "anonymization"
-    ]
+        "anonymization",
+        "neighbour",
+        "neighbours"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "editor.minimap.enabled": false
 }
