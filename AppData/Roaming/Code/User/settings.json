@@ -1,41 +1,48 @@
 {
+    "csharp.unitTestDebuggingOptions": {},
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
+    "editor.minimap.enabled": false,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.renderWhitespace": "all",
     "editor.suggestSelection": "first",
     "java.project.importHint": false,
     "java.requirements.JDK11Warning": false,
     "java.semanticHighlighting.enabled": true,
+    "python.analysis.autoFormatStrings": true,
+    "python.analysis.inlayHints.callArgumentNames": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.pytestParameters": true,
+    "python.analysis.inlayHints.variableTypes": true,
     "python.formatting.provider": "black",
-    "python.jediEnabled": false,
     "python.languageServer": "Pylance",
+    "python.linting.mypyEnabled": true,
     "python.linting.pylamaEnabled": true,
     "python.testing.pytestEnabled": true,
-    "python.venvPath": "~/.local/share/venv",
     "security.workspace.trust.untrustedFiles": "open",
     "window.zoomLevel": -1,
+    "workbench.iconTheme": "vscode-icons",
     "workbench.startupEditor": "newUntitledFile",
+    "cSpell.userWords": [
+        "anonymization",
+        "neighbour",
+        "neighbours"
+    ],
     "files.exclude": {
         "**/.classpath": true,
         "**/.factorypath": true,
         "**/.project": true,
         "**/.settings": true
     },
+    "launch": {
+        "configurations": [],
+        "compounds": []
+    },
     "search.exclude": {
         "**/target": true
-    },
-    "cSpell.userWords": [
-        "anonymization",
-        "neighbour",
-        "neighbours"
-    ],
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
-    },
-    "editor.minimap.enabled": false
+    }
 }
