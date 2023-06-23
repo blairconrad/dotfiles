@@ -44,5 +44,8 @@
     },
     "search.exclude": {
         "**/target": true
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
     }
 }
