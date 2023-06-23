@@ -1,7 +1,7 @@
 {
     "csharp.unitTestDebuggingOptions": {},
     "diffEditor.ignoreTrimWhitespace": false,
-    "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "'JetBrains Mono Regular', 'Fira Code', Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
