@@ -1,6 +1,11 @@
 try:
-    from rich import inspect, pretty
+    import builtins
+    import functools
 
-    pretty.install()
+    import rich
+    import rich.pretty
+
+    builtins.help = functools.partial(rich.inspect, help=True)
+    rich.pretty.install()
 except:
     pass
