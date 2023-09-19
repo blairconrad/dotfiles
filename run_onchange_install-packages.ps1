@@ -1,4 +1,5 @@
 @(
+    "dandavison.delta",
     "Git.Git",
     "Google.Chrome",
     "JanDeDobbeleer.OhMyPosh",
