@@ -1,6 +1,6 @@
 [alias]
     # Run interactive rebase with no editor. Just accept the updated script
-    autosquash=" -c sequence.editor=: rebase --interactive --autosquash"
+    autosquash=!git -c sequence.editor=: rebase --interactive --autosquash
 
     bclean = "!f() { git branch --merged ${1-main} | grep -v " ${1-main}$" | xargs -r git branch -d; }; f"
 
