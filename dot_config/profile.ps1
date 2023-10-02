@@ -2,6 +2,9 @@ $env:XDG_DATA_HOME = Join-Path $env:HOME ".local/share"
 
 $env:EDITOR = "code --wait"
 $env:PYTHONSTARTUP = Join-Path $env:XDG_CONFIG_HOME pythonrc.py
+if (($env:PATHEXT -split ";") -notcontains ".PY") {
+    $env:PATHEXT += ";.PY"
+}
 
 # Let oh-my-posh decide whether the virtual environemnt is in the prompt
 $env:VIRTUAL_ENV_DISABLE_PROMPT = "true"
