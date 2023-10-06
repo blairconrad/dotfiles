@@ -87,6 +87,7 @@ Function Activate-VirtualEnvironment {
     Write-Host "Okay. Nevermind."
 }
 
+Set-Alias ss Select-String
 Set-Alias venv Activate-VirtualEnvironment
 
 Set-PSReadLineOption -BellStyle Visual
