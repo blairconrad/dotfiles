@@ -121,6 +121,6 @@
 {{- if hasSuffix "amidu" .chezmoi.username }}
     useConfigOnly = true
 {{- else }}
-   email = {{ .email }}
-   name = {{ .name }}
+   email = {{ (index . "email") }}
+   name = {{ (index . "name") }}
 {{- end }}
