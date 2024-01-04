@@ -3,7 +3,8 @@ $wingetPackages = @(
     "Git.Git",
     "Google.Chrome",
     "JanDeDobbeleer.OhMyPosh",
-    "Microsoft.VisualStudioCode"
+    "Microsoft.VisualStudioCode",
+    "Microsoft.WindowsTerminal"
 )
 winget install --no-upgrade --scope user --exact --accept-package-agreements --accept-source-agreements $wingetPackages
 
