@@ -17,7 +17,7 @@
     up = "!f() { branch="${2}"; if [ -z "$branch" ] ; then branch=$(git branch --show-current); fi; git fetch --prune ${1-upstream}; git merge --ff-only ${1-upstream}/$branch; }; f"
     wip = !git add -u && git commit -m "WIP" 
 
-{{ if hasSuffix "amidu" .chezmoi.username -}}
+{{ if hasSuffix "amidu" (lower .chezmoi.username) -}}
     # Work-specific aliases for working with topic branches
 
     # Commit, including issue key
@@ -56,7 +56,7 @@
 
 [diff]
     algorithm = histogram
-{{- if hasSuffix "amidu" .chezmoi.username }}
+{{- if hasSuffix "amidu" (lower .chezmoi.username) }}
     tool = araxis
 {{- else }}
     tool = vscode
@@ -109,18 +109,18 @@
     autoStash = true
     updateRefs = true
 
-{{- if hasSuffix "amidu" .chezmoi.username }}
+{{- if hasSuffix "amidu" (lower .chezmoi.username) }}
 
 [scalar]
-   repo = E:/Dev/ei
-   repo = E:/Dev/ei2
-   repo = E:/Dev/ei3
+    repo = E:/Dev/ei
+    repo = E:/Dev/ei2
+    repo = E:/Dev/ei3
 {{- end }}
 
 [user]
-{{- if hasSuffix "amidu" .chezmoi.username }}
+{{- if hasSuffix "amidu" (lower .chezmoi.username) }}
     useConfigOnly = true
 {{- else }}
-   email = {{ (index . "email") }}
-   name = {{ (index . "name") }}
+    email = {{ (index . "email") }}
+    name = {{ (index . "name") }}
 {{- end }}
