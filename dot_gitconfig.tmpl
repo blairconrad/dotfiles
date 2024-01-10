@@ -118,9 +118,8 @@
 {{- end }}
 
 [user]
-{{- if hasSuffix "amidu" (lower .chezmoi.username) }}
-    useConfigOnly = true
-{{- else }}
-    email = {{ (index . "email") }}
-    name = {{ (index . "name") }}
+{{- if not (hasSuffix "amidu" (lower .chezmoi.username)) }}
+    email = blair@blairconrad.com
 {{- end }}
+    name = Blair Conrad
+    useConfigOnly = true
