@@ -7,6 +7,7 @@ $wingetPackages = @(
     "Git.Git",
     "Google.Chrome",
     "JanDeDobbeleer.OhMyPosh",
+    "jftuga.less", # used by sharkdp.bat
     "Microsoft.PowerShell",
     "Microsoft.VisualStudioCode",
     "Microsoft.WindowsTerminal",
