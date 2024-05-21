@@ -43,7 +43,11 @@
         "compounds": []
     },
     "search.exclude": {
+        "**/build": true,
         "**/target": true
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff"
