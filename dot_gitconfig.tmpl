@@ -34,9 +34,10 @@
 {{- end }}
 
 [core]
-    autocrlf=false
-    symlinks=true
+    autocrlf = false
+    longpaths = true
     pager = delta
+    symlinks = true
 
 [delta]
     features = decorations
@@ -107,7 +108,7 @@
 [rebase]
     autoSquash = true
     autoStash = true
-    updateRefs = true
+    updateRefs = false
 
 {{- if hasSuffix "amidu" (lower .chezmoi.username) }}
 
