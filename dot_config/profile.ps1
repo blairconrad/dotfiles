@@ -78,7 +78,7 @@ Function Activate-VirtualEnvironment {
         $newVenvDir = $preferredLocations[0]
         $newVenv = Join-Path $newVenvDir $activatePath
         Write-Output "Creating virtual environment in ${newVenvDir}"
-        uv venv --python "${PythonVersion}" $newVenvDir
+        uv venv --seed --python "${PythonVersion}" $newVenvDir
         Write-Output "Activating ${newVenvDir}"
         & $newVenv
         return
