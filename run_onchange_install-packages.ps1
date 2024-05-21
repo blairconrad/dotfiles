@@ -21,7 +21,8 @@ if ( $WhatIf ) {
     $VerbosePreference = "Continue"
 }
 
-$upgradeSwitch = if ($Upgrade) { "" } else { "--no-upgrade" }
+$wingetUpgradeSwitch = if ($Upgrade) { "" } else { "--no-upgrade" }
+$scoopAction = if ($Upgrade) { "update" } else { "install" }
 
 $wingetPackages = @(
     "dandavison.delta",
@@ -51,7 +52,7 @@ Invoke-Command $wingetCommand
 @(
     "7zip"
 ) | Foreach-Object {
-    Invoke-Command "scoop install ${_}"
+    Invoke-Command "scoop ${scoopAction} ${_}"
 }
 
 if (Get-Command -ErrorAction SilentlyContinue uv) {
