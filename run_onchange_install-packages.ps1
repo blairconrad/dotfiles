@@ -1,4 +1,5 @@
-
+# If this fails, try updating the execution policy.
+# If you can't try using the Goup Policy Editor to Turn on Script Execution
 [CmdletBinding()]
 param (
     [switch]$Upgrade,
