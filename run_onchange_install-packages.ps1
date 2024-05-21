@@ -26,3 +26,10 @@ winget install --no-upgrade --scope user --exact --accept-package-agreements --a
 ) | Foreach-Object {
     scoop install $_
 }
+
+if (Get-Command -ErrorAction SilentlyContinue uv) {
+    uv self update
+}
+else {
+    Invoke-RestMethod https://astral.sh/uv/install.ps1 | Invoke-Expression
+}
