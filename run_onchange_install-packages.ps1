@@ -1,6 +1,31 @@
+
+[CmdletBinding()]
+param (
+    [switch]$Upgrade,
+    [switch]$WhatIf
+)
+
+Function Invoke-Command {
+    Param(
+        [string]$Command
+    )
+
+    Write-Verbose "About to run ${Command}"
+    if (!$WhatIf) {
+        Invoke-Expression $Command
+    }
+}
+
+if ( $WhatIf ) {
+    # If we're not going to do anything, might as well talk about it
+    $VerbosePreference = "Continue"
+}
+
+$upgradeSwitch = if ($Upgrade) { "" } else { "--no-upgrade" }
+
 $wingetPackages = @(
     "dandavison.delta",
-    "dotPDNLLC.paintdotnet",
+    "dotPDN.PaintDotNet",
     "EclipseAdoptium.Temurin.11.JDK",
     "EclipseAdoptium.Temurin.17.JDK",
     "EclipseAdoptium.Temurin.8.JDK",
@@ -19,17 +44,21 @@ $wingetPackages = @(
     "sharkdp.bat",
     "sharkdp.fd"
 )
-winget install --no-upgrade --scope user --exact --accept-package-agreements --accept-source-agreements $wingetPackages
+
+$wingetCommand = "winget install ${upgradeSwitch} --scope user --exact --accept-package-agreements --accept-source-agreements ${wingetPackages}"
+Invoke-Command $wingetCommand
 
 @(
     "7zip"
 ) | Foreach-Object {
-    scoop install $_
+    Invoke-Command "scoop install ${_}"
 }
 
 if (Get-Command -ErrorAction SilentlyContinue uv) {
-    uv self update
+    if ($Upgrade) {
+        Invoke-Command "uv self update"
+    }
 }
 else {
-    Invoke-RestMethod https://astral.sh/uv/install.ps1 | Invoke-Expression
+    Invoke-Command "Invoke-RestMethod https://astral.sh/uv/install.ps1 | Invoke-Expression"
 }
