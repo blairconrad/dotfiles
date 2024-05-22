@@ -47,7 +47,7 @@ $wingetPackages = @(
     "sharkdp.fd"
 )
 
-$wingetCommand = "winget install ${upgradeSwitch} --scope user --exact --accept-package-agreements --accept-source-agreements ${wingetPackages}"
+$wingetCommand = "winget install ${wingetUpgradeSwitch} --scope user --exact --accept-package-agreements --accept-source-agreements ${wingetPackages}"
 Invoke-Command $wingetCommand
 
 @(
