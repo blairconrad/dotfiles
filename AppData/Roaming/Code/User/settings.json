@@ -1,4 +1,11 @@
 {
+    "catppuccin.colorOverrides": {
+        "mocha": {
+            "base": "#000000",
+            "mantle": "#010101",
+            "crust": "#020202",
+        }
+    },
     "csharp.unitTestDebuggingOptions": {},
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.fontFamily": "'Monaspace Argon Regular', 'JetBrains Mono Regular', 'Fira Code', Consolas, 'Courier New', monospace",
@@ -51,5 +58,6 @@
     },
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff"
-    }
+    },
+    "workbench.colorTheme": "Catppuccin Mocha"
 }
