@@ -1,6 +1,7 @@
 $env:XDG_DATA_HOME = Join-Path $env:HOME ".local/share"
 
 $env:EDITOR = "code --wait"
+$env:K9S_CONFIG_DIR = Join-Path $env:XDG_CONFIG_HOME k9s
 $env:PYTHONSTARTUP = Join-Path $env:XDG_CONFIG_HOME pythonrc.py
 if (($env:PATHEXT -split ";") -notcontains ".PY") {
     $env:PATHEXT += ";.PY"
