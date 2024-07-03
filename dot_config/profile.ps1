@@ -7,6 +7,9 @@ if (($env:PATHEXT -split ";") -notcontains ".PY") {
     $env:PATHEXT += ";.PY"
 }
 
+$PSStyle.FileInfo.Directory = $PSStyle.Foreground.Blue;
+
+
 # Let oh-my-posh decide whether the virtual environemnt is in the prompt
 $env:VIRTUAL_ENV_DISABLE_PROMPT = "true"
 
