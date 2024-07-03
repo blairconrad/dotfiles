@@ -1,0 +1,138 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "palette": {
+        "bg1": "#0E050F",
+        "bg2": "#17042F",
+        "bg3": "#390A76",
+        "bg4": "#4F0DA5",
+        "bg5": "#6611D4",
+        "fg": "#CDD6F4",
+        "error-fg": "#F5C2E7"
+    },
+    "blocks": [
+        {
+            "alignment": "left",
+            "segments": [
+                {
+                    "foreground": "p:fg",
+                    "background": "p:bg1",
+                    "properties": {
+                        "time_format": "15:04:05"
+                    },
+                    "style": "powerline",
+                    "template": " {{ .CurrentDate | date .Format }} ",
+                    "trailing_diamond": "\ue0b0",
+                    "leading_diamond": "",
+                    "type": "time"
+                },
+                {
+                    "foreground": "p:fg",
+                    "background": "p:bg2",
+                    "properties": {
+                        "fetch_version": false
+                    },
+                    "style": "powerline",
+                    "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
+                    "powerline_symbol": "\ue0b0",
+                    "type": "python"
+                },
+                {
+                    "foreground": "p:fg",
+                    "background": "p:bg2",
+                    "properties": {
+                        "fetch_version": false
+                    },
+                    "style": "powerline",
+                    "template": " \ufcd1{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+                    "powerline_symbol": "\ue0b0",
+                    "type": "go"
+                },
+                {
+                    "foreground": "p:fg",
+                    "background": "p:bg2",
+                    "properties": {
+                        "fetch_version": false
+                    },
+                    "style": "powerline",
+                    "template": " \ue718{{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}",
+                    "powerline_symbol": "\ue0b0",
+                    "type": "node"
+                },
+                {
+                    "foreground": "p:fg",
+                    "background": "p:bg2",
+                    "properties": {
+                        "fetch_version": false
+                    },
+                    "style": "powerline",
+                    "template": " \ue791{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+                    "powerline_symbol": "\ue0b0",
+                    "type": "ruby"
+                },
+                {
+                    "foreground": "p:fg",
+                    "background": "p:bg2",
+                    "properties": {
+                        "fetch_version": false
+                    },
+                    "style": "powerline",
+                    "template": " \ue738{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+                    "powerline_symbol": "\ue0b0",
+                    "type": "java"
+                },
+                {
+                    "foreground": "p:fg",
+                    "background": "p:bg3",
+                    "powerline_symbol": "\ue0b0",
+                    "properties": {
+                        "folder_icon": "...",
+                        "folder_separator_icon": "/",
+                        "home_icon": "~",
+                        "max_depth": 3,
+                        "style": "agnoster_short"
+                    },
+                    "style": "powerline",
+                    "template": " {{ .Path }} ",
+                    "type": "path"
+                },
+                {
+                    "foreground": "p:fg",
+                    "background": "p:bg4",
+                    "powerline_symbol": "\ue0b0",
+                    "properties": {
+                        "branch_max_length": 25,
+                        "fetch_stash_count": true,
+                        "fetch_status": true,
+                        "fetch_upstream_icon": true,
+                        "ignore_status": [
+                            "E:/Dev/ei3",
+                            "E:/Dev/ei2",
+                            "E:/Dev/ei"
+                        ]
+                    },
+                    "style": "powerline",
+                    "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
+                    "type": "git"
+                },
+                {
+                    "foreground": "p:fg",
+                    "background": "p:bg5",
+                    "foreground_templates": [
+                        "{{ if gt .Code 0 }}p:error-fg{{ end }}"
+                    ],
+                    "properties": {
+                        "always_enabled": false
+                    },
+                    "style": "diamond",
+                    "template": " \uf7d4{{ if gt .Code 0 }} {{.Code}}{{ end }} ",
+                    "trailing_diamond": "\ue0c0",
+                    "type": "exit"
+                }
+            ],
+            "type": "prompt"
+        }
+    ],
+    "console_title_template": "{{ .Folder }}",
+    "final_space": true,
+    "version": 2
+}
