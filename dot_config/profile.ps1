@@ -102,4 +102,4 @@ Set-PSReadlineKeyHandler -Key "Ctrl+RightArrow" -Function ForwardWord
 Set-PSReadlineKeyHandler -Key "Tab" -Function Complete
 
 # oh-my-posh settings
-oh-my-posh --init --shell pwsh --config ${env:XDG_CONFIG_HOME}/oh-my-posh/themes/blair-mocha.omp.json | Invoke-Expression
+oh-my-posh --init --shell pwsh --config ${env:XDG_CONFIG_HOME}/oh-my-posh/themes/blair-blocky-mocha.omp.json | Invoke-Expression
