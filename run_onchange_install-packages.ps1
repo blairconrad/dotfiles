@@ -31,7 +31,6 @@ $wingetPackages = @(
     "EclipseAdoptium.Temurin.11.JDK",
     "EclipseAdoptium.Temurin.17.JDK",
     "EclipseAdoptium.Temurin.8.JDK",
-    "Git.Git",
     "Google.Chrome",
     "JanDeDobbeleer.OhMyPosh",
     "jftuga.less", # used by sharkdp.bat
@@ -51,7 +50,8 @@ $wingetCommand = "winget install ${wingetUpgradeSwitch} --scope user --exact --a
 Invoke-Command $wingetCommand
 
 @(
-    "7zip"
+    "7zip",
+    "git"
 ) | Foreach-Object {
     Invoke-Command "scoop ${scoopAction} ${_}"
 }
