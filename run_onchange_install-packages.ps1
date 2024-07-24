@@ -25,13 +25,19 @@ if ( $WhatIf ) {
 $wingetUpgradeSwitch = if ($Upgrade) { "" } else { "--no-upgrade" }
 $scoopAction = if ($Upgrade) { "update" } else { "install" }
 
-$wingetPackages = @(
-    "dandavison.delta",
+$wingetMachinePackages = @(
     "dotPDN.PaintDotNet",
     "EclipseAdoptium.Temurin.11.JDK",
     "EclipseAdoptium.Temurin.17.JDK",
     "EclipseAdoptium.Temurin.8.JDK",
-    "Google.Chrome",
+    "Google.Chrome"
+)
+
+$wingetCommand = "winget install ${wingetUpgradeSwitch} --scope machine --exact --accept-package-agreements --accept-source-agreements ${wingetMachinePackages}"
+Invoke-Command $wingetCommand
+
+$wingetUserPackages = @(
+    "dandavison.delta",
     "JanDeDobbeleer.OhMyPosh",
     "jftuga.less", # used by sharkdp.bat
     "Microsoft.PowerShell",
@@ -46,7 +52,7 @@ $wingetPackages = @(
     "sharkdp.fd"
 )
 
-$wingetCommand = "winget install ${wingetUpgradeSwitch} --scope user --exact --accept-package-agreements --accept-source-agreements ${wingetPackages}"
+$wingetCommand = "winget install ${wingetUpgradeSwitch} --scope user --exact --accept-package-agreements --accept-source-agreements ${wingetUserPackages}"
 Invoke-Command $wingetCommand
 
 @(
