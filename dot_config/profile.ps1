@@ -6,6 +6,7 @@ $env:PYTHONSTARTUP = Join-Path $env:XDG_CONFIG_HOME pythonrc.py
 if (($env:PATHEXT -split ";") -notcontains ".PY") {
     $env:PATHEXT += ";.PY"
 }
+$env:UV_LINK_MODE = "symlink"
 
 $PSStyle.FileInfo.Directory = $PSStyle.Foreground.Blue;
 
