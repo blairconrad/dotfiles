@@ -49,6 +49,9 @@
         "configurations": [],
         "compounds": []
     },
+    "ruff.interpreter": [
+        "python.exe"
+    ],
     "search.exclude": {
         "**/build": true,
         "**/target": true
