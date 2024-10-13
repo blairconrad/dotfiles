@@ -6,6 +6,19 @@ $env:PYTHONSTARTUP = Join-Path $env:XDG_CONFIG_HOME pythonrc.py
 if (($env:PATHEXT -split ";") -notcontains ".PY") {
     $env:PATHEXT += ";.PY"
 }
+
+$pythonVersions = @"
+3.13
+3.12
+3.11
+3.10
+3.9
+"@  -split "`n" | Foreach-Object { $_.Trim() }
+$pythonVersions | Foreach-Object {
+    $null = New-Item -Path function: -Name "script:python${_}" -Value "uv run --with=rich --python=${_} python `$args"
+}
+$null = New-Item -Path function: -Name "script:python" -Value "uv run --with=rich --python=$($pythonVersions[0]) python `$args"
+
 $env:UV_LINK_MODE = "symlink"
 
 $PSStyle.FileInfo.Directory = $PSStyle.Foreground.Blue;

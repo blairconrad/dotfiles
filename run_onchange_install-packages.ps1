@@ -44,10 +44,6 @@ $wingetUserPackages = @(
     "Microsoft.VisualStudioCode",
     "Microsoft.WindowsTerminal",
     "OpenWhisperSystems.Signal",
-    "Python.Python.3.10",
-    "Python.Python.3.11",
-    "Python.Python.3.8",
-    "Python.Python.3.9",
     "sharkdp.bat",
     "sharkdp.fd"
 )
@@ -70,3 +66,13 @@ if (Get-Command -ErrorAction SilentlyContinue uv) {
 else {
     Invoke-Command "Invoke-RestMethod https://astral.sh/uv/install.ps1 | Invoke-Expression"
 }
+
+$pythonVersions = @"
+3.13
+3.12
+3.11
+3.10
+3.9
+"@ -split "`n"
+
+uv python install $pythonVersions
