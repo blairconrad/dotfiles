@@ -25,10 +25,7 @@
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.inlayHints.pytestParameters": true,
     "python.analysis.inlayHints.variableTypes": true,
-    "python.formatting.provider": "black",
     "python.languageServer": "Pylance",
-    "python.linting.mypyEnabled": true,
-    "python.linting.pylamaEnabled": true,
     "python.testing.pytestEnabled": true,
     "security.workspace.trust.untrustedFiles": "open",
     "window.zoomLevel": -1,
@@ -50,6 +47,7 @@
         "compounds": []
     },
     "ruff.interpreter": [
+        "${workspaceFolder}/.venv/Scripts/python.exe",
         "python.exe"
     ],
     "search.exclude": {
