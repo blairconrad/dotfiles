@@ -7,13 +7,16 @@ if (($env:PATHEXT -split ";") -notcontains ".PY") {
     $env:PATHEXT += ";.PY"
 }
 
-$pythonVersions = @"
-3.13
-3.12
-3.11
-3.10
-3.9
-"@  -split "`n" | Foreach-Object { $_.Trim() }
+$private:pythonVersions = (@"
+  3.13
+  3.12
+  3.11
+  3.10
+  3.9
+"@ |
+    Select-String -AllMatches "\S+" |
+    Select-Object -ExpandProperty Matches |
+    Select-Object -ExpandProperty Value)
 $pythonVersions | Foreach-Object {
     $null = New-Item -Path function: -Name "script:python${_}" -Value "uv run --with=rich --python=${_} python `$args"
 }

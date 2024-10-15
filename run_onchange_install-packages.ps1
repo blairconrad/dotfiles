@@ -22,10 +22,10 @@ if ( $WhatIf ) {
     $VerbosePreference = "Continue"
 }
 
-$wingetUpgradeSwitch = if ($Upgrade) { "" } else { "--no-upgrade" }
-$scoopAction = if ($Upgrade) { "update" } else { "install" }
+$private:wingetUpgradeSwitch = if ($Upgrade) { "" } else { "--no-upgrade" }
+$private:scoopAction = if ($Upgrade) { "update" } else { "install" }
 
-$wingetMachinePackages = @(
+$private:wingetMachinePackages = @(
     "dotPDN.PaintDotNet",
     "EclipseAdoptium.Temurin.11.JDK",
     "EclipseAdoptium.Temurin.17.JDK",
@@ -33,10 +33,10 @@ $wingetMachinePackages = @(
     "Google.Chrome"
 )
 
-$wingetCommand = "winget install ${wingetUpgradeSwitch} --scope machine --exact --accept-package-agreements --accept-source-agreements ${wingetMachinePackages}"
+$private:wingetCommand = "winget install ${wingetUpgradeSwitch} --scope machine --exact --accept-package-agreements --accept-source-agreements ${wingetMachinePackages}"
 Invoke-Command $wingetCommand
 
-$wingetUserPackages = @(
+$private:wingetUserPackages = @(
     "dandavison.delta",
     "JanDeDobbeleer.OhMyPosh",
     "jftuga.less", # used by sharkdp.bat
@@ -48,7 +48,7 @@ $wingetUserPackages = @(
     "sharkdp.fd"
 )
 
-$wingetCommand = "winget install ${wingetUpgradeSwitch} --scope user --exact --accept-package-agreements --accept-source-agreements ${wingetUserPackages}"
+$private:wingetCommand = "winget install ${wingetUpgradeSwitch} --scope user --exact --accept-package-agreements --accept-source-agreements ${wingetUserPackages}"
 Invoke-Command $wingetCommand
 
 @(
@@ -67,12 +67,15 @@ else {
     Invoke-Command "Invoke-RestMethod https://astral.sh/uv/install.ps1 | Invoke-Expression"
 }
 
-$pythonVersions = @"
-3.13
-3.12
-3.11
-3.10
-3.9
-"@ -split "`n"
+$private:pythonVersions = (@"
+  3.13
+  3.12
+  3.11
+  3.10
+  3.9
+"@ |
+    Select-String -AllMatches "\S+" |
+    Select-Object -ExpandProperty Matches |
+    Select-Object -ExpandProperty Value)
 
 uv python install $pythonVersions
