@@ -20,7 +20,7 @@ $private:pythonVersions = (@"
 $pythonVersions | Foreach-Object {
     $null = New-Item -Path function: -Name "script:python${_}" -Value "uv run --with=rich --python=${_} python `$args"
 }
-$null = New-Item -Path function: -Name "script:python" -Value "uv run --with=rich --python=$($pythonVersions[0]) python `$args"
+$env:PATH = "$(uv run python -c `"import sys; print(sys.executable.replace('python.exe', ''))`");$env:PATH"
 
 $env:UV_LINK_MODE = "symlink"
 
