@@ -1,3 +1,4 @@
+$env:XDG_BIN_HOME = Join-Path $env:HOME ".local/bin"
 $env:XDG_DATA_HOME = Join-Path $env:HOME ".local/share"
 
 $env:EDITOR = "code --wait"
@@ -20,7 +21,8 @@ $private:pythonVersions = (@"
 $pythonVersions | Foreach-Object {
     $null = New-Item -Path function: -Name "script:python${_}" -Value "uv run --with=rich --python=${_} python `$args"
 }
-$env:PATH = "$(uv run python -c `"import sys; print(sys.executable.replace('python.exe', ''))`");$env:PATH"
+$env:PATH = "$(uv run python -c `"import sys; print(sys.executable.replace('python.exe', ''))`");${env:PATH}"
+$env:PATH = "${env:XDG_BIN_HOME};${env:PATH}"
 
 $env:UV_LINK_MODE = "symlink"
 
