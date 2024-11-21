@@ -137,7 +137,7 @@
                     "foreground": "p:background",
                     "background": "p:git",
                     "properties": {
-                        "branch_max_length": 25,
+                        "branch_max_length": 30,
                         "fetch_stash_count": true,
                         "fetch_status": true,
                         "fetch_upstream_icon": true,
