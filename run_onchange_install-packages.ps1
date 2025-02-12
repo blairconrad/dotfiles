@@ -30,7 +30,8 @@ $private:wingetMachinePackages = @(
     "EclipseAdoptium.Temurin.11.JDK",
     "EclipseAdoptium.Temurin.17.JDK",
     "EclipseAdoptium.Temurin.8.JDK",
-    "Google.Chrome"
+    "Google.Chrome",
+    "" # This is a placeholder to make it easier to add more packages
 )
 
 $private:wingetCommand = "winget install ${wingetUpgradeSwitch} --scope machine --exact --accept-package-agreements --accept-source-agreements ${wingetMachinePackages}"
@@ -45,7 +46,8 @@ $private:wingetUserPackages = @(
     "Microsoft.WindowsTerminal",
     "OpenWhisperSystems.Signal",
     "sharkdp.bat",
-    "sharkdp.fd"
+    "sharkdp.fd",
+    "" # This is a placeholder to make it easier to add more packages
 )
 
 $private:wingetCommand = "winget install ${wingetUpgradeSwitch} --scope user --exact --accept-package-agreements --accept-source-agreements ${wingetUserPackages}"
@@ -53,8 +55,9 @@ Invoke-Command $wingetCommand
 
 @(
     "7zip",
-    "git"
-) | Foreach-Object {
+    "git",
+    "" # This is a placeholder to make it easier to add more packages
+) | Where-Object { $_ -ne "" } | Foreach-Object {
     Invoke-Command "scoop ${scoopAction} ${_}"
 }
 
