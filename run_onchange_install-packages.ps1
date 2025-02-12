@@ -47,6 +47,7 @@ $private:wingetUserPackages = @(
     "OpenWhisperSystems.Signal",
     "sharkdp.bat",
     "sharkdp.fd",
+    "tummychow.git-absorb",
     "" # This is a placeholder to make it easier to add more packages
 )
 
