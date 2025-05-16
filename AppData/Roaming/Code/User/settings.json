@@ -60,5 +60,7 @@
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff"
     },
-    "workbench.colorTheme": "Catppuccin Mocha"
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "git.openRepositoryInParentFolders": "never",
+    "files.hotExit": "off"
 }
