@@ -2,8 +2,9 @@
 # If you can't try using the Goup Policy Editor to Turn on Script Execution
 [CmdletBinding()]
 param (
-    [switch]$Upgrade,
-    [switch]$WhatIf
+    [string] $JustPackage,
+    [switch] $Upgrade,
+    [switch] $WhatIf
 )
 
 Function Invoke-Command {
@@ -17,6 +18,21 @@ Function Invoke-Command {
     }
 }
 
+Function Limit-Packages {
+    Param(
+        [string[]] $Packages
+    )
+    if ($JustPackage) {
+        if ($Packages -contains $JustPackage) {
+            return @($JustPackage)
+        }
+        else {
+            return @()
+        }
+    }
+    return $Packages
+}
+
 if ( $WhatIf ) {
     # If we're not going to do anything, might as well talk about it
     $VerbosePreference = "Continue"
@@ -25,7 +41,7 @@ if ( $WhatIf ) {
 $private:wingetUpgradeSwitch = if ($Upgrade) { "" } else { "--no-upgrade" }
 $private:scoopAction = if ($Upgrade) { "update" } else { "install" }
 
-$private:wingetMachinePackages = @(
+$private:wingetMachinePackages = Limit-Packages @(
     "dotPDN.PaintDotNet",
     "EclipseAdoptium.Temurin.11.JDK",
     "EclipseAdoptium.Temurin.17.JDK",
@@ -34,10 +50,12 @@ $private:wingetMachinePackages = @(
     "" # This is a placeholder to make it easier to add more packages
 )
 
-$private:wingetCommand = "winget install ${wingetUpgradeSwitch} --scope machine --exact --accept-package-agreements --accept-source-agreements ${wingetMachinePackages}"
-Invoke-Command $wingetCommand
+if ($private:wingetMachinePackages) {
+    $private:wingetCommand = "winget install ${wingetUpgradeSwitch} --scope machine --exact --accept-package-agreements --accept-source-agreements ${wingetMachinePackages}"
+    Invoke-Command $wingetCommand
+}
 
-$private:wingetUserPackages = @(
+$private:wingetUserPackages = Limit-Packages @(
     "dandavison.delta",
     "JanDeDobbeleer.OhMyPosh",
     "jftuga.less", # used by sharkdp.bat
@@ -51,10 +69,12 @@ $private:wingetUserPackages = @(
     "" # This is a placeholder to make it easier to add more packages
 )
 
-$private:wingetCommand = "winget install ${wingetUpgradeSwitch} --scope user --exact --accept-package-agreements --accept-source-agreements ${wingetUserPackages}"
-Invoke-Command $wingetCommand
+if ($private:wingetUserPackages) {
+    $private:wingetCommand = "winget install ${wingetUpgradeSwitch} --scope user --exact --accept-package-agreements --accept-source-agreements ${wingetUserPackages}"
+    Invoke-Command $wingetCommand
+}
 
-@(
+Limit-Packages @(
     "7zip",
     "git",
     "" # This is a placeholder to make it easier to add more packages
