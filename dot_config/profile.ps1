@@ -58,6 +58,20 @@ Function Set-LocationToRepositoryRoot {
 
 Set-Alias rr Set-LocationToRepositoryRoot
 
+Function Rebase-OntoMostRecentMerge {
+    Param(
+        [Parameter(Mandatory = $false)]
+        [switch] $Interactive = $false
+    )
+    $mergeCommit = (git log --merges --max-count 1 --pretty=format:"%H")
+    if ($Interactive) {
+        git rebase --interactive $mergeCommit
+    }
+    else {
+        git rebase $mergeCommit
+    }
+}
+
 Function Activate-VirtualEnvironment {
     Param(
         [Parameter(Mandatory = $false)]
