@@ -1,193 +1,225 @@
 {
-    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-    "palette": {
-        "background": "#040404",
-        "foreground": "#CDD6F4",
-        "Rosewater": "#F5E0DC",
-        "Flamingo": "#F2CDCD",
-        "Pink": "#F5C2E7",
-        "Mauve": "#CBA6F7",
-        "Red": "#F38BA8",
-        "Maroon": "#EBA0AC",
-        "Peach": "#FAB387",
-        "Yellow": "#F9E2AF",
-        "Green": "#A6E3A1",
-        "Teal": "#94E2D5",
-        "Sky": "#89DCEB",
-        "Sapphire": "#74C7EC",
-        "Blue": "#89B4FA",
-        "Lavender": "#B4BEFE",
-        "Text": "#CDD6F4",
-        "Subtext 1": "#BAC2DE",
-        "Subtext 0": "#A6ADC8",
-        "Overlay 2": "#9399B2",
-        "Overlay 1": "#7F849C",
-        "Overlay 0": "#6C7086",
-        "Surface 2": "#585B70",
-        "Surface 1": "#45475A",
-        "Surface 0": "#313244",
-        "Base": "#1E1E2E",
-        "Mantle": "#181825",
-        "Crust": "#11111B",
-        "wight": "#FFFFFF",
-        "time": "p:Lavender",
-        "language": "p:Blue",
-        "path": "p:Green",
-        "git": "p:Yellow",
-        "errorcode": "p:Peach",
-        "error": "p:Red",
-        "closer": "p:Pink"
-    },
-    "blocks": [
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "Base": "#1E1E2E",
+    "Blue": "#89B4FA",
+    "Crust": "#11111B",
+    "Flamingo": "#F2CDCD",
+    "Green": "#A6E3A1",
+    "Lavender": "#B4BEFE",
+    "Mantle": "#181825",
+    "Maroon": "#EBA0AC",
+    "Mauve": "#CBA6F7",
+    "Overlay 0": "#6C7086",
+    "Overlay 1": "#7F849C",
+    "Overlay 2": "#9399B2",
+    "Peach": "#FAB387",
+    "Pink": "#F5C2E7",
+    "Red": "#F38BA8",
+    "Rosewater": "#F5E0DC",
+    "Sapphire": "#74C7EC",
+    "Sky": "#89DCEB",
+    "Subtext 0": "#A6ADC8",
+    "Subtext 1": "#BAC2DE",
+    "Surface 0": "#313244",
+    "Surface 1": "#45475A",
+    "Surface 2": "#585B70",
+    "Teal": "#94E2D5",
+    "Text": "#CDD6F4",
+    "Yellow": "#F9E2AF",
+    "background": "#040404",
+    "closer": "p:Pink",
+    "error": "p:Red",
+    "errorcode": "p:Peach",
+    "foreground": "#CDD6F4",
+    "git": "p:Yellow",
+    "language": "p:Blue",
+    "path": "p:Green",
+    "time": "p:Lavender",
+    "wight": "#FFFFFF"
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
         {
-            "alignment": "left",
-            "segments": [
-                {
-                    "foreground": "p:background",
-                    "background": "p:time",
-                    "properties": {
-                        "time_format": " 15:04:05 "
-                    },
-                    "style": "plain",
-                    "template": "{{ .CurrentDate | date .Format }}",
-                    "type": "time"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:language",
-                    "style": "plain",
-                    "template": "\u2009",
-                    "type": "text"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:language",
-                    "properties": {
-                        "fetch_version": false
-                    },
-                    "style": "plain",
-                    "template": "\ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }}{{ end }}{{ .Full }}{{ end }}",
-                    "type": "python"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:language",
-                    "properties": {
-                        "fetch_version": false
-                    },
-                    "style": "plain",
-                    "template": "\ufcd1{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
-                    "type": "go"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:language",
-                    "properties": {
-                        "fetch_version": false
-                    },
-                    "style": "plain",
-                    "template": "\ue718{{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}",
-                    "type": "node"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:language",
-                    "properties": {
-                        "fetch_version": false
-                    },
-                    "style": "plain",
-                    "template": "\ue791{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
-                    "type": "ruby"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:language",
-                    "properties": {
-                        "fetch_version": false
-                    },
-                    "style": "plain",
-                    "template": "\ue738{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
-                    "type": "java"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:language",
-                    "style": "plain",
-                    "template": "\u2009",
-                    "type": "text"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:path",
-                    "properties": {
-                        "style": "full"
-                    },
-                    "style": "plain",
-                    "template": " {{ .Path }} ",
-                    "type": "path"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:git",
-                    "style": "plain",
-                    "template": "\u2009",
-                    "type": "text"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:git",
-                    "properties": {
-                        "branch_max_length": 30,
-                        "fetch_stash_count": true,
-                        "fetch_status": true,
-                        "fetch_upstream_icon": true,
-                        "ignore_status": [
-                            "E:/Dev/ei3",
-                            "E:/Dev/ei2",
-                            "E:/Dev/ei"
-                        ]
-                    },
-                    "style": "plain",
-                    "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }}",
-                    "type": "git"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:git",
-                    "style": "plain",
-                    "template": "\u2009",
-                    "type": "text"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:errorcode",
-                    "style": "plain",
-                    "template": "\u2009{{ if gt .Code 0 }}{{.Code}}{{ end }}\u2009",
-                    "type": "text"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:error",
-                    "style": "plain",
-                    "template": "{{ if gt .Code 0 }} λ {{ end }}",
-                    "type": "text"
-                },
-                {
-                    "foreground": "p:background",
-                    "background": "p:closer",
-                    "style": "plain",
-                    "template": "{{ if le .Code 0 }} λ {{ end }}",
-                    "type": "text"
-                },
-                {
-                    "background": "p:background",
-                    "style": "plain",
-                    "template": "\u202F",
-                    "type": "text"
-                }
-            ],
-            "type": "prompt"
+          "properties": {
+            "cache_duration": "none",
+            "time_format": " 15:04:05 "
+          },
+          "template": "{{ .CurrentDate | date .Format }}",
+          "foreground": "p:background",
+          "background": "p:time",
+          "type": "time",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "\u2009",
+          "foreground": "p:background",
+          "background": "p:language",
+          "type": "text",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": false
+          },
+          "template": "\ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }}{{ end }}{{ .Full }}{{ end }}",
+          "foreground": "p:background",
+          "background": "p:language",
+          "type": "python",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": false
+          },
+          "template": "\ufcd1{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:background",
+          "background": "p:language",
+          "type": "go",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": false
+          },
+          "template": "\ue718{{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}",
+          "foreground": "p:background",
+          "background": "p:language",
+          "type": "node",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": false
+          },
+          "template": "\ue791{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:background",
+          "background": "p:language",
+          "type": "ruby",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": false
+          },
+          "template": "\ue738{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "foreground": "p:background",
+          "background": "p:language",
+          "type": "java",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "\u2009",
+          "foreground": "p:background",
+          "background": "p:language",
+          "type": "text",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "style": "full"
+          },
+          "template": " {{ .Path }} ",
+          "foreground": "p:background",
+          "background": "p:path",
+          "type": "path",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "\u2009",
+          "foreground": "p:background",
+          "background": "p:git",
+          "type": "text",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "branch_max_length": 30,
+            "cache_duration": "none",
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "ignore_status": [
+              "E:/Dev/ei3",
+              "E:/Dev/ei2",
+              "E:/Dev/ei"
+            ]
+          },
+          "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }}",
+          "foreground": "p:background",
+          "background": "p:git",
+          "type": "git",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "\u2009",
+          "foreground": "p:background",
+          "background": "p:git",
+          "type": "text",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "\u2009{{ if gt .Code 0 }}{{.Code}}{{ end }}\u2009",
+          "foreground": "p:background",
+          "background": "p:errorcode",
+          "type": "text",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "{{ if gt .Code 0 }} λ {{ end }}",
+          "foreground": "p:background",
+          "background": "p:error",
+          "type": "text",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "{{ if le .Code 0 }} λ {{ end }}",
+          "foreground": "p:background",
+          "background": "p:closer",
+          "type": "text",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "\u202f",
+          "background": "p:background",
+          "type": "text",
+          "style": "plain"
         }
-    ],
-    "version": 2
+      ]
+    }
+  ],
+  "version": 3
 }
