@@ -2,6 +2,7 @@
 
 (server-start)
 
+(tool-bar-mode -1)
 
 ;;; Scroll by a whole screen!
 (setq mouse-wheel-scroll-amount nil)
