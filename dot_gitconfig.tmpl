@@ -188,17 +188,10 @@
 
 [diff]
     algorithm = histogram
-{{- if hasSuffix "amidu" (lower .chezmoi.username) }}
-    tool = araxis
-{{- else }}
     tool = vscode
-{{- end }}
 
 [difftool]
     prompt = false
-
-[difftool "araxis"]
-    cmd = difftool.sh \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 
 [difftool "vscode"]
     cmd = code --wait --diff \"$LOCAL\" \"$REMOTE\"
