@@ -92,11 +92,11 @@ else {
 }
 
 $private:pythonVersions = (@"
+  3.14
   3.13
   3.12
   3.11
   3.10
-  3.9
 "@ |
     Select-String -AllMatches "\S+" |
     Select-Object -ExpandProperty Matches |
