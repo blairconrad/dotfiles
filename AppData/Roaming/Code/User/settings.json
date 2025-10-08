@@ -58,7 +58,12 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[python]": {
-        "editor.defaultFormatter": "charliermarsh.ruff"
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff" // or "ms-python.black-formatter" if using Black for formatting
     },
     "workbench.colorTheme": "Catppuccin Mocha",
     "git.openRepositoryInParentFolders": "never",
