@@ -158,9 +158,9 @@
             "fetch_status": true,
             "fetch_upstream_icon": true,
             "ignore_status": [
-              "E:/Dev/ei3",
-              "E:/Dev/ei2",
-              "E:/Dev/ei"
+              "D:/Dev/ei3",
+              "D:/Dev/ei2",
+              "D:/Dev/ei"
             ]
           },
           "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }}",

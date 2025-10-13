@@ -96,9 +96,9 @@
             "fetch_status": true,
             "fetch_upstream_icon": true,
             "ignore_status": [
-              "E:/Dev/ei3",
-              "E:/Dev/ei2",
-              "E:/Dev/ei"
+              "D:/Dev/ei3",
+              "D:/Dev/ei2",
+              "D:/Dev/ei"
             ]
           },
           "style": "powerline",
