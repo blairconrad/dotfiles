@@ -5,12 +5,15 @@
     # Run interactive rebase with no editor. Just accept the updated script
     autosquash=!git -c sequence.editor=: rebase --interactive --autosquash
 
-    bclean = "!f() { git branch --merged ${1-main} | grep -v " ${1-main}$" | xargs -r git branch -d; }; f"
+    bclean = !git gone | xargs -r git branch --delete --force
 
     # diff HEAD against where we push to
     diffp = "diff @ @{push}"
 
     g = "log --oneline --graph"
+
+    # From Phil Haack: https://haacked.com/archive/2025/04/17/git-gone/
+    gone = !git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads/ | awk '$2 == \"[gone]\" { print $1 }'
 
     newbranch = "switch --no-track --create"
     pf = "push --force-with-lease"
