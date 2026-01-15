@@ -43,12 +43,18 @@ $private:scoopAction = if ($Upgrade) { "update" } else { "install" }
 
 $private:wingetMachinePackages = Limit-Packages @(
     "dotPDN.PaintDotNet",
-    "EclipseAdoptium.Temurin.11.JDK",
-    "EclipseAdoptium.Temurin.17.JDK",
-    "EclipseAdoptium.Temurin.8.JDK",
     "Google.Chrome",
     "" # This is a placeholder to make it easier to add more packages
 )
+
+if ($env:USERNAME -eq "amidu") {
+    $private:wingetMachinePackages += @(
+        "EclipseAdoptium.Temurin.11.JDK",
+        "EclipseAdoptium.Temurin.17.JDK",
+        "EclipseAdoptium.Temurin.8.JDK",
+        "" # This is a placeholder to make it easier to add more packages
+    )
+}
 
 if ($private:wingetMachinePackages) {
     $private:wingetCommand = "winget install ${wingetUpgradeSwitch} --scope machine --exact --accept-package-agreements --accept-source-agreements ${wingetMachinePackages}"
