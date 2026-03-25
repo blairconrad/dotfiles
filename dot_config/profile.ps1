@@ -34,6 +34,8 @@ $env:VIRTUAL_ENV_DISABLE_PROMPT = "true"
 
 
 Import-Module posh-git
+# oh-my-posh handles git display; disable posh-git's prompt status to avoid redundant (slow) git status calls
+$GitPromptSettings.EnablePromptStatus = $false
 Import-Module PSReadLine
 
 Function Set-LocationToParent {
